@@ -16,7 +16,7 @@ Desenvolva um projeto **(usando dicionários)** que vai gravar a quantidade de *
 
 ___
 
-<h3>Usar as 🔑 **palavras chaves** a seguir para cada vaga. </h3>
+<h3>Usar as 🔑 Palavras Chaves a seguir para cada vaga. </h3>
 <h4> Vaga Analista de dados: </h4>
 
   **Python, PowerBI, SQL, Boa comunicação**
