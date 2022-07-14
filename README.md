@@ -42,8 +42,7 @@ Ao final, nosso código deve mostrar como saída: quantas pessoas estão inscrit
 ___
 
 <h3>💡 O que foi modificado</h3>
-O programa não pede candidatos, nomes ou para qual vaga a pessoa quer se inscrever. No lugar disso, ele lê arquivos em formato PDF ou docx, e com base nas vagas disponíveis, ver quais ele cumpre ao menos um requisito
-
+O programa não pede candidatos, nomes ou para qual vaga a pessoa quer se inscrever. No lugar disso, ele lê arquivos em formato PDF ou docx, e com base nas vagas disponíveis, diz se o candidato está apto a alguma, e quais.
 
 
 
