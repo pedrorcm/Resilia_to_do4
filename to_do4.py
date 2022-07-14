@@ -52,17 +52,15 @@ def abrindo():
 
 
 
-def get_all_text():         #candidato como arg?
+def get_all_text():
   rea, nPaginas, exte = abrindo()
 
   full_text = []
 
-  
 
   if exte == 'pdf':
     for n in range(0,nPaginas):
       pagina = rea.getPage(n)
-    #print(pagina.extractText())
       full_text.append(str(pagina.extract_text()))
         
     full_text = str(full_text[0])
@@ -72,8 +70,8 @@ def get_all_text():         #candidato como arg?
   if exte == 'docx':
     for para in rea.paragraphs:
       full_text.append(para.text)
-    return str(full_text)
 
+    return str(full_text)
 
 
 def treating_text(txt=get_all_text()):
@@ -81,10 +79,27 @@ def treating_text(txt=get_all_text()):
 
   return txt
 
+
 def getting_email(txt):
-  em = re.findall('[\w]{0,40}@gmail.com', txt)
+  em = re.findall('[\w]{0,40}@[\w]{0,12}.[\w]{0,4}', txt)
 
   return em
+
+
+def compatibilidade(cmpt, prof_elegiveis, mail):
+  if len(cmpt) == 0 and len(prof_elegiveis) == 0:
+    prof_elegiveis.add('Nenhuma no momento')
+    cmpt.append('para as vagas abertas no momento não são compatíveis')
+
+
+  candidato = (f'''
+O candidato identificado pelo email: {mail}
+está apto a se candidatar para as vagas: {" e ".join([i for i in prof_elegiveis])}.
+
+Suas competências desejadas são {", ".join([a.capitalize() for a in cmpt])}
+''')
+
+  return candidato
 
 
 
@@ -95,14 +110,9 @@ def candidato():
 
   competencias, profissoes_elegiveis = acessando_chaves(texto_str)
 
-  candidato = (f'''
-O candidato identificado pelo email: {email}
-está apto a se candidatar para as vagas de {" e ".join([i for i in profissoes_elegiveis])}.
+  candidat = compatibilidade(competencias, profissoes_elegiveis, email)
 
-Suas competências desejadas são {", ".join([a.capitalize() for a in competencias])}
-''')
-
-  return candidato
+  return candidat
 
 
 
@@ -114,7 +124,7 @@ def acessando_chaves(txt):
 
 
   for parcv in dc.items():
-    #print(parcv)
+
     for elemento_do_valor in parcv[1]:
       if elemento_do_valor in txt:
         competencias.append(elemento_do_valor)
